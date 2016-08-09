@@ -1,6 +1,6 @@
 ##效果演示:
 ##首先是实现效果的总览:
-![这里写图片描述](http://img.blog.csdn.net/20160809092650976)
+![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/summary1.png)
 ![这里写图片描述](http://img.blog.csdn.net/20160809092700538)
 ##然后是单独动画效果的演示:
 ###位移动画演示:
