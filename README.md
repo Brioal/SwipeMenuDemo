@@ -73,25 +73,25 @@
 ####注:因为背景,模糊效果会引入多余的组件,所以只在需要的时候添加进去,故不包含在动画代码中,设置方式下面再说.
 ###再贴一个`xml`属性与代码的实现表格
 
-|代码实现|xml实现|功能|
-|--|--|--|
-|`void setStyleCode(int type)`|sm_type`|设置动画效果代码|
-|`void setMenuOffset(int menuOffset)`|`sm_menuoffset`|设置拉出菜单距离右边界的距离|
-|`void setDragWipeOffset(int dragWipeOffset)`|`sm_dragoffset`|设置触发滑动的范围,为0则是全屏|
-|`void setStartScale(float minScale)`|`sm_startscale`|设置起始缩放|
-|`void setStartAlpha(float startAlpha)`|`sm_startalpha`|设置起始透明度|
-|`void setStart3DAngle(int start3DAngle)`|`sm_start3dangle`|设置起始3D旋转角度|
-|`void setFullColor(Activity activity, int headColor)`|无|设置全局颜色|
-|`void setBackImage(Activity activity, int backBitmap, int headColor)`|无|设置全局图片背景并沉浸|
-|`void setBlur(Activity activity, int backBitmap, int headColor, float blur)`|无|设置全局模糊背景并指定模糊程度|
-|`void setChangedBlur(Activity activity, int backBitmap, int headColor)`|无|设置全局动态模糊(范围默认0~25f)|
-|`void setReverseChangedBlur(Activity activity, int backBitmap, int headColor)`|无|设置反向动态模糊背景(范围默认0~25f)|
-|`void setChangedBlur(Activity activity, int backBitmap, int headColor, float startBlur, float endBlur)`|无|设置指定范围的动态模糊|
-|`void setOnMenuShowingListener(onSwipeProgressListener listener)`|无|设置滑动监听,回调获取菜单从隐藏到显示的进度,范围(0~1.0f)|
-|`void changeAllColor(int color)`|无|改变全局颜色(需要先设置全局颜色否则报错)|
-|`void isMenuShowing()`|无|返回当前菜单是否显示|
-|`void showMenu()`|无|显示菜单|
-|`void hideMenu()`|无|隐藏菜单|
+代码实现|xml实现|功能
+--|--|--
+`void setStyleCode(int type)`|sm_type`|设置动画效果代码
+`void setMenuOffset(int menuOffset)`|`sm_menuoffset`|设置拉出菜单距离右边界的距离
+`void setDragWipeOffset(int dragWipeOffset)`|`sm_dragoffset`|设置触发滑动的范围,为0则是全屏
+`void setStartScale(float minScale)`|`sm_startscale`|设置起始缩放
+`void setStartAlpha(float startAlpha)`|`sm_startalpha`|设置起始透明度
+`void setStart3DAngle(int start3DAngle)`|`sm_start3dangle`|设置起始3D旋转角度
+`void setFullColor(Activity activity, int headColor)`|无|设置全局颜色
+`void setBackImage(Activity activity, int backBitmap, int headColor)`|无|设置全局图片背景并沉浸
+`void setBlur(Activity activity, int backBitmap, int headColor, float blur)`|无|设置全局模糊背景并指定模糊程度
+`void setChangedBlur(Activity activity, int backBitmap, int headColor)`|无|设置全局动态模糊(范围默认0~25f)
+`void setReverseChangedBlur(Activity activity, int backBitmap, int headColor)`|无|设置反向动态模糊背景(范围默认0~25f)
+`void setChangedBlur(Activity activity, int backBitmap, int headColor, float startBlur, float endBlur)`|无|设置指定范围的动态模糊
+`void setOnMenuShowingListener(onSwipeProgressListener listener)`|无|设置滑动监听,回调获取菜单从隐藏到显示的进度,范围(0~1.0f)
+`void changeAllColor(int color)`|无|改变全局颜色(需要先设置全局颜色否则报错)
+`void isMenuShowing()`|无|返回当前菜单是否显示
+`void showMenu()`|无|显示菜单
+`void hideMenu()`|无|隐藏菜单
 
 ##提供的方法就这么多,也不难理解,这里再说一点注意事项
 ###1.默认是不设置全局背景或者颜色的,所以如果需要全局颜色沉浸和背景沉浸请做相关设置.两种沉浸都兼容到4.4
