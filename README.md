@@ -74,7 +74,7 @@
 ###再贴一个`xml`属性与代码的实现表格
 
 代码实现|xml实现|功能
---|--|--
+:--|:--|:--
 `void setStyleCode(int type)`|sm_type`|设置动画效果代码
 `void setMenuOffset(int menuOffset)`|`sm_menuoffset`|设置拉出菜单距离右边界的距离
 `void setDragWipeOffset(int dragWipeOffset)`|`sm_dragoffset`|设置触发滑动的范围,为0则是全屏
