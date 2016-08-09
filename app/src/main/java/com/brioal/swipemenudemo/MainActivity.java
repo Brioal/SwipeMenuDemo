@@ -369,14 +369,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (mRgRotate.getCheckedRadioButtonId() == R.id.rb_rotate3) { //存在旋转动态
                     builder.append("setStart3DAngle(" + (mAngleProgress * 1.0f / 100) + ")");
                 }
-                if (mCbPic.isChecked()) {
+                if (mCbPic.isChecked() && mContentRgBlur.getCheckedRadioButtonId() == -1) { //
                     builder.append("setBackImage(MainActivity.this, R.mipmap.dayu, R.color.colorPrimary)\n");
                 }
                 if (mContentRgBlur.getCheckedRadioButtonId() == R.id.content_rb_blur) { //静态模糊
                     builder.append("setBlur(MainActivity.this, R.mipmap.dayu, R.color.colorPrimary, 22f)\n");
                 }
                 if (mContentRgBlur.getCheckedRadioButtonId() == R.id.content_rb_changeblur) { //动态模糊
-                    builder.append("setChangedBlur(MainActivity.this, R.mipmap.dayu, R.color.colorPrimary)");
+                    builder.append("setChangedBlur(MainActivity.this, R.mipmap.dayu, R.color.colorPrimary)\n");
+                }
+                if (mContentRgBlur.getCheckedRadioButtonId() == R.id.content_rb_changeblur) { //动态模糊
+                    builder.append("setReverseChangedBlur(MainActivity.this, R.mipmap.dayu, R.color.colorPrimary)");
                 }
                 context = builder.toString();
             } else {
