@@ -118,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     mEditor.putInt("Pic", 0);
                 }
+                mEditor.putBoolean("IsBlur", false);
+                mEditor.putBoolean("IsChangeBlur", false);
+                mEditor.putBoolean("IsReverseChangeBlur", false);
                 mEditor.commit();
                 Intent intent = new Intent(mContext, MainActivity.class);
                 startActivity(intent);

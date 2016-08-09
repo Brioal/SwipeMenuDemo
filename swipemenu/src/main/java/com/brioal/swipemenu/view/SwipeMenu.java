@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,43 +57,62 @@ public class SwipeMenu extends ViewGroup {
     private int mStart3DAngle; //最小旋转角度 ,只对3D有用 0~80
     private boolean isFullScreenSwipe = false; //是否全屏滑动
     private ImageView mBackImageView; //设置动态模糊时候的背景
-
-    private onSwipeProgressListener mListener;
-    private boolean isChangedStatueBar = true;
-
-
-    public SwipeMenu(Context context) {
-        this(context, null);
-    }
-
-    public SwipeMenu(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initObtainStyledAttr(context, attrs);
-        init(context);
-    }
-
-
-    //从资源文件获取数据
-    private void initObtainStyledAttr(Context context, AttributeSet attrs) {
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SwipeMenu);
-        mType = array.getInteger(R.styleable.SwipeMenu_sm_type, 1111);
-        mDragWipeOffset = (int) array.getDimension(R.styleable.SwipeMenu_sm_dragoffset, SizeUtil.Dp2Px(context, 100));
-        mMenuOffset = (int) array.getDimension(R.styleable.SwipeMenu_sm_menuoffset, SizeUtil.Dp2Px(context, 50));
-        mStartScale = array.getFloat(R.styleable.SwipeMenu_sm_startscale, 0.2f);
-        mStartAlpha = array.getFloat(R.styleable.SwipeMenu_sm_startalpha, 0.2f);
-        mStart3DAngle = array.getInteger(R.styleable.SwipeMenu_sm_start3dangle, 60);
-
-        array.recycle();
-    }
-
-    //设置滑动监听
-    public void setOnMenuShowingListener(onSwipeProgressListener listener) {
-        mListener = listener;
-    }
-
     private View statusView = null;
     private boolean isTranslate = false; //是否透明
     private boolean isTranslated = false; //是否已经设置过透明
+    private onSwipeProgressListener mListener; //滑动监听
+
+
+    //设置动画效果代码
+    public void setStyleCode(int type) {
+        try {
+            mType = type;
+            char[] ints = (mType + "").toCharArray();
+            mTransInt = ints[0] - '0';
+            mScaleInt = ints[1] - '0';
+            mAlphaInt = ints[2] - '0';
+            mRotateInt = ints[3] - '0';
+            mMenuView = getChildAt(0);
+            if (mMenuView != null) {
+                mMenuView.setScaleX(1);
+                mMenuView.setScaleY(1);
+                mMenuView.setTranslationX(0);
+                mMenuView.setRotationX(0);
+                mMenuView.setRotationY(0);
+                mMenuView.setRotationX(0);
+                mMenuView.setAlpha(1);
+            }
+        } catch (Exception e) {
+            Log.e("SwipeMenu", "动画代码设置出错,请检查范围");
+        }
+
+    }
+
+    //设置拉出菜单距离右边界的距离
+    public void setMenuOffset(int menuOffset) {
+        this.mMenuOffset = menuOffset;
+    }
+
+    //设置触发滑动的范围,为0则是全屏
+    public void setDragWipeOffset(int dragWipeOffset) {
+        this.mDragWipeOffset = dragWipeOffset;
+    }
+
+    //设置起始缩放
+    public void setStartScale(float minScale) {
+        mStartScale = minScale;
+    }
+
+    //设置起始透明度
+    public void setStartAlpha(float startAlpha) {
+        mStartAlpha = startAlpha;
+    }
+
+    //设置起始3D旋转角度
+    public void setStart3DAngle(int start3DAngle) {
+        mStart3DAngle = start3DAngle;
+    }
+
 
     //设置全局颜色
     public void setFullColor(Activity activity, int headColor) {
@@ -114,6 +134,7 @@ public class SwipeMenu extends ViewGroup {
         setFull(activity, backBitmap, headColor, 0.2f, 0, 25f);
     }
 
+    //设置反向动态模糊背景
     public void setReverseChangedBlur(Activity activity, int backBitmap, int headColor) {
         setFull(activity, backBitmap, headColor, 0.2f, 25f, 0);
     }
@@ -123,6 +144,66 @@ public class SwipeMenu extends ViewGroup {
         setFull(activity, backBitmap, headColor, 0.2f, startBlur, endBlur);
     }
 
+    //设置滑动监听
+    public void setOnMenuShowingListener(onSwipeProgressListener listener) {
+        mListener = listener;
+    }
+
+
+    //改变全局整体颜色
+    public void changeAllColor(int color) throws Exception {
+        if (statusView != null) {
+            setBackgroundColor(color);
+            statusView.setBackgroundColor(color);
+        } else {
+            throw new Exception("you must call the setBackImage method first");
+        }
+    }
+
+    //是否显示菜单
+    public boolean isMenuShowing() {
+        if (getScrollX() <= 0) {
+            isMenuShowing = true;
+        } else {
+            isMenuShowing = false;
+        }
+        return isMenuShowing;
+    }
+
+    //显示菜单
+    public void showMenu() {
+        mScroller.startScroll(getScrollX(), 0, 0 - getScrollX(), 0);
+        invalidate();
+    }
+
+    //显示内容
+    public void hideMenu() {
+        mScroller.startScroll(getScrollX(), 0, mScreenWidth - mMenuOffset - getScrollX(), 0);
+        invalidate();
+    }
+
+    public SwipeMenu(Context context) {
+        this(context, null);
+    }
+
+    public SwipeMenu(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initObtainStyledAttr(context, attrs);
+        init(context);
+    }
+
+
+    //从资源文件获取数据
+    private void initObtainStyledAttr(Context context, AttributeSet attrs) {
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SwipeMenu);
+        mType = array.getInteger(R.styleable.SwipeMenu_sm_type, 1111);
+        mDragWipeOffset = (int) array.getDimension(R.styleable.SwipeMenu_sm_dragoffset, SizeUtil.Dp2Px(context, 100));
+        mMenuOffset = (int) array.getDimension(R.styleable.SwipeMenu_sm_menuoffset, SizeUtil.Dp2Px(context, 50));
+        mStartScale = array.getFloat(R.styleable.SwipeMenu_sm_startscale, 0.2f);
+        mStartAlpha = array.getFloat(R.styleable.SwipeMenu_sm_startalpha, 0.2f);
+        mStart3DAngle = array.getInteger(R.styleable.SwipeMenu_sm_start3dangle, 60);
+        array.recycle();
+    }
 
     //设置全局图片并且沉浸
     private void setFull(Activity activity, int backRes, int headColor, float scale, float startBlur, float endBlur) {
@@ -177,17 +258,7 @@ public class SwipeMenu extends ViewGroup {
 
     }
 
-    //改变整体颜色
-    public void changeAllColor(int color) throws Exception {
-        if (statusView != null) {
-            setBackgroundColor(color);
-            statusView.setBackgroundColor(color);
-        } else {
-            throw new Exception("you must call the setBackImage method first");
-        }
-    }
-
-    public View setColor(Activity activity, int color) {
+    private View setColor(Activity activity, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 设置状态栏透明
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -207,7 +278,7 @@ public class SwipeMenu extends ViewGroup {
         return null;
     }
 
-    private static View createStatusBarView(Activity activity, int color) {
+    private  View createStatusBarView(Activity activity, int color) {
         // 绘制一个和状态栏一样高的矩形
         View statusBarView = new View(activity);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
@@ -218,75 +289,21 @@ public class SwipeMenu extends ViewGroup {
         return statusBarView;
     }
 
-    private static int getStatusBarHeight(Context context) {
+    private  int getStatusBarHeight(Context context) {
         // 获得状态栏高度
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
 
-
-    //设置起始缩放
-    public void setStartScale(float minScale) {
-        mStartScale = minScale;
-    }
-
-    //设置起始透明度
-    public void setStartAlpha(float startAlpha) {
-        mStartAlpha = startAlpha;
-    }
-
-    //设置起始3D旋转角度
-    public void setStart3DAngle(int start3DAngle) {
-        mStart3DAngle = start3DAngle;
-    }
-
-    //设置动画形式
-    public void setStyleCode(int type) {
-        mType = type;
-        char[] ints = (mType + "").toCharArray();
-        mTransInt = ints[0] - '0';
-        mScaleInt = ints[1] - '0';
-        mAlphaInt = ints[2] - '0';
-        mRotateInt = ints[3] - '0';
-        mMenuView = getChildAt(0);
-        if (mMenuView != null) {
-            mMenuView.setScaleX(1);
-            mMenuView.setScaleY(1);
-            mMenuView.setTranslationX(0);
-            mMenuView.setRotationX(0);
-            mMenuView.setRotationY(0);
-            mMenuView.setRotationX(0);
-            mMenuView.setAlpha(1);
-        }
-    }
-
-    //设置侧边拖拽的偏移量 默认为全屏
-    public void setMenuOffset(int expandMaxOffset) {
-        mDragWipeOffset = expandMaxOffset;
-    }
-
-    //是否显示菜单
-    public boolean isMenuShowing() {
-        if (getScrollX() <= 0) {
-            isMenuShowing = true;
-        } else {
-            isMenuShowing = false;
-        }
-        return isMenuShowing;
-    }
-
     //添加背景图获取屏幕宽高
-    public void init(Context context) {
+    private void init(Context context) {
         mScroller = new Scroller(context);
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
         mScreenWidth = metrics.widthPixels;
         mScreenHeight = metrics.heightPixels;
-        mDragWipeOffset = 100;
-
     }
-
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -301,7 +318,7 @@ public class SwipeMenu extends ViewGroup {
             case MotionEvent.ACTION_MOVE:
                 float xDelta = x - xIntercept;
                 float yDelta = y - yIntercept;
-                if (isFullScreenSwipe && Math.abs(xDelta) > 20) { //全屏滑动
+                if (mDragWipeOffset == 0 && Math.abs(xDelta) > 20) { //全屏滑动
                     intercept = true;
                     break;
                 }
@@ -355,8 +372,7 @@ public class SwipeMenu extends ViewGroup {
         yLast = y;
         return false;
     }
-
-    public void dealScroll() {
+    private void dealScroll() {
         //最小缩放值
         float progress = 1 - getScrollX() * 1.0f / (mScreenWidth - mMenuOffset);
         //移动动画处理
@@ -422,7 +438,6 @@ public class SwipeMenu extends ViewGroup {
         }
     }
 
-
     //滑动处理
     private void touchMove_deal(float offset) {
         if (getScrollX() - offset <= 0) {
@@ -446,20 +461,6 @@ public class SwipeMenu extends ViewGroup {
             hideMenu();
         }
     }
-
-
-    //显示菜单
-    public void showMenu() {
-        mScroller.startScroll(getScrollX(), 0, 0 - getScrollX(), 0);
-        invalidate();
-    }
-
-    //显示内容
-    public void hideMenu() {
-        mScroller.startScroll(getScrollX(), 0, mScreenWidth - mMenuOffset - getScrollX(), 0);
-        invalidate();
-    }
-
 
     @Override
     public void computeScroll() {
