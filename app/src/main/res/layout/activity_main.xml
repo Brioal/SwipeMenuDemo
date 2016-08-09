@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.brioal.swipemenu.view.SwipeMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_swipemenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.brioal.swipemenudemo.MainActivity">
+
+    <include layout="@layout/left_menu"/>
+
+    <include layout="@layout/right_content"/>
+
+</com.brioal.swipemenu.view.SwipeMenu>

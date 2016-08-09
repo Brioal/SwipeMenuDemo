@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+    <!--移动动画控制-->
+    <RadioGroup
+        android:id="@+id/menu_rg_trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <RadioButton
+            android:id="@+id/rb_trans1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="固定位置"
+            android:textColor="@color/colorWhite"/>
+
+        <RadioButton
+            android:id="@+id/rb_trans2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跟随移动"
+            android:textColor="@color/colorWhite"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_trans3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视差移动"
+            android:textColor="@color/colorWhite"/>
+    </RadioGroup>
+    <!--缩放动画控制-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/menu_cb_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:text="缩放动画"
+            android:textColor="@color/colorWhite"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="起始缩放0~0.8"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp"/>
+
+        <SeekBar
+            android:id="@+id/menu_sb_scale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progress="20"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+    <!--透明动画控制-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <CheckBox
+            android:id="@+id/menu_cb_alpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:text="透明动画"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="起始透明度0~0.8"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp"/>
+
+        <SeekBar
+            android:id="@+id/menu_sb_alpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progress="20"/>
+    </LinearLayout>
+    <!--旋转动画设置-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/menu_rg_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <RadioButton
+                android:id="@+id/rb_rotate1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="不旋转"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioButton
+                android:id="@+id/rb_rotate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中心旋转"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioButton
+                android:id="@+id/rb_rotate3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="左3D旋转"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioButton
+                android:id="@+id/rb_rotate4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="旋转效果1"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioButton
+                android:id="@+id/rb_rotate5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="旋转效果2"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioButton
+                android:id="@+id/rb_rotate6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="旋转效果3"
+                android:textColor="@color/colorWhite"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="起始3D旋转角度 0~80"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp"/>
+
+        <SeekBar
+            android:id="@+id/menu_Sb_rotate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progress="60"/>
+    </LinearLayout>
+
+</LinearLayout>

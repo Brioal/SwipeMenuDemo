@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwipeMenu">
+        <!--动画的代码-->
+        <attr name="sm_type" format="integer"/>
+        <!--滑出菜单的范围-->
+        <attr name="sm_dragoffset" format="dimension"/>
+        <!--滑出菜单距边界的值-->
+        <attr name="sm_menuoffset" format="dimension"/>
+        <!--滑动开始的缩放值-->
+        <attr name="sm_startscale" format="float"/>
+        <!--滑动开始的缩放值-->
+        <attr name="sm_startalpha" format="float"/>
+        <!--滑动开始的3D旋转角度-->
+        <attr name="sm_start3dangle" format="integer"/>
+        <!--全局颜色-->
+        <attr name="sm_fullcolor" format="color"/>
+        <!--全局背景-->
+        <attr name="sm_fullimage" format="reference"/>
+        <!--以下方法只在设置全局图片背景时候有用-->
+        <!--标题栏颜色-->
+        <attr name="sm_statucolor" format="color"/>
+        <!--全局背景的模糊度-->
+        <attr name="sm_fullimageblur" format="float"/>
+    </declare-styleable>
+</resources>
