@@ -8,7 +8,7 @@
 透明度动画|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/3.gif)|旋转动画|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/4.gif)
 全局图片沉浸|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/5.gif)|模糊背景|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/6.gif)
 动态模糊|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/7.gif)|反向动态模糊|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/8.gif)
-组合动画1|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/9.gif)|组合动画1|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/10.gif)
+组合动画1|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/9.gif)|组合动画2|![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/10.gif)
 ###好了,就演示这么多了,因为组合动画太多了,演示不完的
 ###简单计算一下:
 ```
