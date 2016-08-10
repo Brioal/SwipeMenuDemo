@@ -1,9 +1,11 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+/.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+app/SwipeMenuDemo.apk
+swipemenu/libs/
+swipemenu/src/main/res/drawable/
