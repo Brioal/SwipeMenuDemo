@@ -89,9 +89,27 @@
 ##为了方便同学们对效果进行设置,我在演示`Demo`中添加了参数设置显示的效果,就在`RecyclerView`的第一个`Item`,并且是可以动态更改的,当前的效果需要如何设置参数全部在上面显示出来了.
 ##另外用`RecyclerView`来显示提示的另一个目的是演示滑动冲突的处理,默认的是菜单和内容都是可以处理横向纵向的滑动操作的,只有当滑动在靠近菜单内容交集点的时候才会触发滑动.当然也可以设置全屏滑动和设置触发的范围,具体方法查看上面表格内的方法,这里就不重复了.
 ##使用介绍就到这里了,下面介绍如何添加依赖库:
-##`Android Studio`的话跟其他库一样,在你们`App`的`build.gradle`内的`dependencies`下添加
+##Step 1. Add the JitPack repository to your build file
+###Add it in your root build.gradle at the end of repositories:
 ```
-compile 'com.brioal:SwipeMenu:1.0'
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+	
+	
+```
+
+##Step 2. Add the dependency
+
+```
+	dependencies {
+	        compile 'com.github.Brioal:SwipeMenuDemo:1.0'
+	}
+	
+	
 ```
 ##或者可以下载`Demo`提取`module`添加
 
