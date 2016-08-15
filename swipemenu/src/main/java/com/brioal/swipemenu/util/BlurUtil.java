@@ -7,7 +7,7 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
-/**
+/**cao
  * 高斯模糊工具类
  * Created by loongggdroid on 2016/5/12.
  */
