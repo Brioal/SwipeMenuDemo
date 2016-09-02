@@ -106,7 +106,7 @@
 
 ```
 	dependencies {
-	        compile 'com.github.Brioal:SwipeMenuDemo:1.0'
+	        compile 'com.github.Brioal:SwipeMenuDemo:1.5'
 	}
 	
 	
