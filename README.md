@@ -1,6 +1,6 @@
 ## 效果演示:
 ## 注意:因为 好几个同学都遇到了刷新不及时以及类似的问题,所以请暂时不要用这个库,我会在近期修复,下面放一个替代的库
-####[SlidingMenu](https://github.com/jfeinstein10/SlidingMenu),造成的不便请大家谅解
+#### [SlidingMenu](https://github.com/jfeinstein10/SlidingMenu),造成的不便请大家谅解
 ## 首先是实现效果的总览:
 ![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/summary1.png)![这里写图片描述](https://github.com/Brioal/SwipeMenuDemo/blob/master/art/summary2.png)
 ## 然后是单独动画效果的演示:
@@ -66,7 +66,7 @@
 
 代码实现|xml实现|功能
 :--|:--|:--
-`void setStyleCode(int type)`|sm_type`|设置动画效果代码
+`void setStyleCode(int type)`|'sm_type`|设置动画效果代码
 `void setMenuOffset(int menuOffset)`|`sm_menuoffset`|设置拉出菜单距离右边界的距离
 `void setDragWipeOffset(int dragWipeOffset)`|`sm_dragoffset`|设置触发滑动的范围,为0则是全屏
 `void setStartScale(float minScale)`|`sm_startscale`|设置起始缩放
